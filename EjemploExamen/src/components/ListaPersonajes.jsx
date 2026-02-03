@@ -1,13 +1,15 @@
 import { useContext, useState, useEffect } from "react";
 import { TarjetaContexto } from "../contexts/TarjetaContexto";
-
+import '../css/style.css'
 import Boton from "./Boton";
 import { conexion } from "../api/conexion";
+import {Link} from "react-router-dom";
 
 const ListaPersonajes = () => {
     // Asegúrate de que personajes sea un array para evitar errores de .map()
     const [personajes, setPersonajes] = useState([]);
     const [cargando, setCargando] = useState(true);
+
     
     const { setTarjetaSeleccionada } = useContext(TarjetaContexto);
     useEffect(() => {
@@ -26,6 +28,9 @@ const ListaPersonajes = () => {
     if (cargando) {
         return <div>Cargando personajes...</div>;
     }
+    const ubicacion = () =>{
+        <Link to='/favoritos'></Link>
+    }
     return (
         <div className="lista-contenedor">
             {personajes.map((personaje) => ( 
@@ -36,8 +41,11 @@ const ListaPersonajes = () => {
                     role="button" // Ayuda a la accesibilidad
                     tabIndex="0"
                 >
-                    <h3>{personaje.name}</h3>           
+                    <h3>{personaje.name}</h3>
+                    <img src={personaje.image} alt={personaje.name} style={{width: 250, height:400, display:"block"}} />           
                     <Boton texto="Ver más" onClick={() => setTarjetaSeleccionada(personaje)} />
+                    <Boton texto="Añadir a fav" onClick={() => setTarjetaSeleccionada(personaje) } />
+                    
                 </div>
             ))}             
         </div>

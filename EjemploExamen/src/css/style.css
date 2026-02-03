@@ -1,0 +1,16 @@
+.lista-contenedor{
+    display: grid; 
+    grid-template-columns: repeat(3, 300px);  
+    grid-gap: 50px; width: 80vw;
+}
+.tarjeta-personaje{
+    border: solid 7px black;
+    border-radius: 7%;
+    display: grid;
+    justify-content: center;
+    background-color: burlywood;
+    padding-bottom: 10px;
+}
+button{
+    margin-top: 20px;
+}
